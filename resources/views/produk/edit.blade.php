@@ -9,10 +9,9 @@
 @extends('template')
 @section('main')
     <div id="produk">
-        <h2> Tambah Produk</h2>
-
-        {!! Form::open(['url'=>'produk']) !!}
-            @include ('produk/form',['submitButtonText'=>'Tambah Produk'])
+        <h2> Edit Produk</h2>
+        {!! Form::model($produk,['method'=>'PATCH','action'=>['produkcontroller@update',$produk->id]]) !!}
+        @include ('produk/form',['submitButtonText'=>'Edit Produk'])
         {!! Form::close() !!}
     </div>
 @stop

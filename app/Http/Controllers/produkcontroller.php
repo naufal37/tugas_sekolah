@@ -32,4 +32,23 @@ class produkcontroller extends Controller
         $produk = produk::findOrFail($id);
         return view('produk/detail',compact('produk')) ;
     }
+
+    public function edit($id)
+    {
+        $produk = produk::findOrFail($id);
+        return view('produk/edit',compact('produk'));
+    }
+    public function update($id,Request $request)
+    {
+        $produk = produk::findOrFail($id);
+        $produk->update($request->all());
+        return redirect('produk');
+    }
+
+    public function destroy($id)
+    {
+        $produk = produk::findOrFail($id);
+        $produk->delete();
+        return redirect('produk');
+    }
 }

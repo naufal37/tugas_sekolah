@@ -23,7 +23,17 @@
                 <td>{{$produk->harga_produk}}</td>
                 <td>{{$produk->deskripsi_produk}}</td>
                 <td>{{$produk->jenis_produk}}</td>
-                <td>{{link_to('produk/'.$produk->id,'Detail',['class'=>'btn btn-success btn-sm'])}}</td>
+                <td>
+                    <div class="box-button">
+                        {{link_to('produk/'.$produk->id,'Detail',['class'=>'btn btn-success btn-sm'])}}</div>
+                    <div class="box-button">
+                        {{link_to('produk/'.$produk->id.'/edit','Edit',['class'=>'btn btn-warning btn-sm'])}}
+                    </div>
+                    <div class="box-button">
+                        {!! Form::open(['method'=>'DELETE','action'=>['produkcontroller@destroy',$produk->id]]) !!}
+                        {!! Form::submit('Delete',['class'=>'btn btn-danger btn-sm']) !!}
+                    </div>
+                </td>
                 </tr>
             @endforeach
             </tbody>
