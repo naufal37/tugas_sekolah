@@ -27,4 +27,5 @@ Route::patch('produk/{produk}','produkcontroller@update');
 
 Route::delete('produk/{produk}','produkcontroller@destroy');
 
+Route::get('test-collection','produkcontroller@test');
 ?>

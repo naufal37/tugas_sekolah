@@ -45,8 +45,8 @@
         <div class="pull-left">
             <strong> Jumlah Produk : {{$jumlah_produk}}</strong>
         </div>
-        <div class="pull-right">
-            Pagination
+        <div class="paging">
+            {{$produk_list->links()}}
         </div>
     </div>
 
