@@ -14,6 +14,21 @@ class produk extends Model
             'harga_produk',
             'deskripsi_produk',
             'jenis_produk',
+            'berlaku_sampai',
 
         ];
+    public $dates = ['berlaku_sampai'];
+
+//    public function setNamaProdukAttribute($nama_produk)
+//    {
+//        $print = $this->attributes['nama_produk'] = strtolower($nama_produk);
+//        return $print;
+//    }
+
+//    public function getNamaProdukAttribute($nama_produk)
+//    {
+//        return ucwords($nama_produk);
+//
+//    }
+
 }

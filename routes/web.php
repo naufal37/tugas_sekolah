@@ -1,17 +1,8 @@
 <?php
 
-Route::get('/','homepage@homepage');{
+Route::get('/','produkcontroller@homepage');
 
-};
-
-Route::get ('about','about@about');{
-
-};
-
-Route::get('asal', ['as'=>'alamat-rumah','uses'=>'alamat@alamat_rumah']);
-
-
-Route::get('alamat','alamat@alamat_asli');
+Route::get ('about','produkcontroller@about');
 
 Route::get('produk','produkcontroller@produk');
 
@@ -27,5 +18,7 @@ Route::patch('produk/{produk}','produkcontroller@update');
 
 Route::delete('produk/{produk}','produkcontroller@destroy');
 
-Route::get('test-collection','produkcontroller@test');
+Route::get('date-mutator','produkcontroller@datemutator');
 ?>
+
+

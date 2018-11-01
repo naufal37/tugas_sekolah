@@ -10,6 +10,6 @@
 @section('main')
 <div id="about">
     <h1> Selamat Datang!</h1>
-    <p>Nama Saya Naufal Ahmad Fauzan</p>
+    <p>Selamat Datang Di Situs Hayu Dagang</p>
 </div>
 @stop

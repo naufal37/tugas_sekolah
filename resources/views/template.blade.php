@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 10/27/18
- * Time: 7:02 AM
- */
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +17,7 @@
 
 <body>
 <div class="container">
-    @include('navbar')
+@include('navbar')
 @yield('main')
 
 </div>

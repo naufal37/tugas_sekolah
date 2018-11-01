@@ -39,5 +39,9 @@
         </div>
 
         <div class="form-group">
+            {!! Form::date('berlaku_sampai', !empty($produk) ? $produk->berlaku_sampai->format('Y-m-d'): null, ['class' => 'form-control', 'id' => 'berlaku_sampai']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit($submitButtonText,['class'=>'btn btn-primary form-control']) !!}
         </div>

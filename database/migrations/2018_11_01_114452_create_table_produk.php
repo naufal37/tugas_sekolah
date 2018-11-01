@@ -15,10 +15,11 @@ class CreateTableProduk extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_produk');
+            $table->string('nama_produk',30);
             $table->string('harga_produk');
             $table->string('deskripsi_produk');
             $table->string('jenis_produk');
+            $table->date('berlaku_sampai');
             $table->timestamps();
         });
     }

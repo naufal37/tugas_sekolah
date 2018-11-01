@@ -29,6 +29,10 @@
                 <th> Jenis Produk</th>
                 <td>{{$produk->jenis_produk}}</td>
             </tr>
+            <tr>
+                <th> Berlaku Sampai</th>
+                <td>{{$produk->berlaku_sampai->format('d-m-Y')}}</td>
+            </tr>
         </table>
     </div>
 @stop

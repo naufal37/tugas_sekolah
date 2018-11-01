@@ -12,6 +12,7 @@
                 <th>Harga Produk</th>
                 <th>Deskripsi Produk</th>
                 <th>Jenis Produk</th>
+                <th>Berlaku Sampai</th>
                 <th>Pilihan</th>
             </tr>
             </thead>
@@ -23,6 +24,7 @@
                 <td>{{$produk->harga_produk}}</td>
                 <td>{{$produk->deskripsi_produk}}</td>
                 <td>{{$produk->jenis_produk}}</td>
+                <td>{{$produk->berlaku_sampai->format('d-m-Y')}}</td>
                 <td>
                     <div class="box-button">
                         {{link_to('produk/'.$produk->id,'Detail',['class'=>'btn btn-success btn-sm'])}}</div>
