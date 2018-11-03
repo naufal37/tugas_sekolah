@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\produk;
-
+use Validator;
 class produkcontroller extends Controller
 {
     public function homepage()
@@ -30,7 +31,22 @@ class produkcontroller extends Controller
 
     public function store(Request $request)
     {
-        produk::create($request->all());
+        $input = $request->all();
+        $validator = Validator::make($input,
+            [
+                'nama_produk'=>'required|string|min:4|unique:produk,nama_produk',
+                'harga_produk' => 'required|integer|',
+                'deskripsi_produk' => 'required|string|min:10',
+                'jenis_produk' => 'required|in:Hewani,Nabati',
+                'berlaku_sampai'=>'required|date',
+
+            ]);
+        if ($validator->fails())
+        {
+            return redirect('produk/tambah')->withInput()->withErrors($validator);
+        }
+
+        produk::create($input);
         return redirect('produk');
     }
 
@@ -40,7 +56,7 @@ class produkcontroller extends Controller
         return view('produk/detail',compact('produk')) ;
     }
 
-    public function edit($id)
+    public function edit($id,Request $request)
     {
         $produk = produk::findOrFail($id);
         return view('produk/edit',compact('produk'));
@@ -48,6 +64,23 @@ class produkcontroller extends Controller
     public function update($id,Request $request)
     {
         $produk = produk::findOrFail($id);
+
+        $input = $request->all();
+        $validator = Validator::make($input,
+            [
+                'nama_produk'=>'required|string|min:4|unique:produk,nama_produk,'.$request->input('id'),
+                'harga_produk' => 'required|integer|',
+                'deskripsi_produk' => 'required|string|min:10',
+                'jenis_produk' => 'required|in:Hewani,Nabati',
+                'berlaku_sampai'=>'required|date',
+
+            ]);
+        if ($validator->fails())
+        {
+            return redirect('produk/'.$id.'/edit')->withInput()->withErrors($validator);
+        }
+
+
         $produk->update($request->all());
         return redirect('produk');
     }
@@ -58,15 +91,16 @@ class produkcontroller extends Controller
         $produk->delete();
         return redirect('produk');
     }
-
-    public function datemutator()
-    {
-        $produk = produk::findOrFail(3);
-//        return 'Tinggal '. ($produk->berlaku_sampai->age).' Tahun Lagi';
-    }
-
-    public function test(){}
 }
+
+//    public function datemutator()
+//    {
+//        $produk = produk::findOrFail(3);
+////        return 'Tinggal '. ($produk->berlaku_sampai->age).' Tahun Lagi';
+//    }
+
+//    public function test(){}
+//}
 
 
 

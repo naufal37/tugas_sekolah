@@ -10,7 +10,6 @@
 @section('main')
     <div id="produk">
         <h2> Tambah Produk</h2>
-
         {!! Form::open(['url'=>'produk']) !!}
             @include ('produk/form',['submitButtonText'=>'Tambah Produk'])
         {!! Form::close() !!}
