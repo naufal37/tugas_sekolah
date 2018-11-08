@@ -30,6 +30,10 @@
                 <td>{{$produk->jenis_produk}}</td>
             </tr>
             <tr>
+                <th> Bonus</th>
+                <td>{{ !empty($produk->bonus->bonus) ? $produk->bonus->bonus : '-'}}</td>
+            </tr>
+            <tr>
                 <th> Berlaku Sampai</th>
                 <td>{{$produk->berlaku_sampai->format('d-m-Y')}}</td>
             </tr>

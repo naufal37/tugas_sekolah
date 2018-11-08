@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\produk;
+use App\bonus;
 use Validator;
 class produkcontroller extends Controller
 {
@@ -34,11 +35,12 @@ class produkcontroller extends Controller
         $input = $request->all();
         $validator = Validator::make($input,
             [
-                'nama_produk'=>'required|string|min:4|unique:produk,nama_produk',
-                'harga_produk' => 'required|integer|',
-                'deskripsi_produk' => 'required|string|min:10',
-                'jenis_produk' => 'required|in:Hewani,Nabati',
-                'berlaku_sampai'=>'required|date',
+                'nama_produk'       =>  'required|string|min:4|unique:produk,nama_produk',
+                'harga_produk'      =>  'required|integer|digits_between:4,8',
+                'deskripsi_produk'  =>  'required|string|min:10',
+                'jenis_produk'      =>  'required|in:Hewani,Nabati',
+                'berlaku_sampai'    =>  'required|date',
+                'bonus'             =>  'sometimes|string',
 
             ]);
         if ($validator->fails())
@@ -46,8 +48,14 @@ class produkcontroller extends Controller
             return redirect('produk/tambah')->withInput()->withErrors($validator);
         }
 
-        produk::create($input);
+        $produk = produk::create($input);
+        $bonus = new bonus();
+
+        $bonus->bonus = $request->input('bonus');
+        $produk->bonus()->save($bonus);
         return redirect('produk');
+
+
     }
 
     public function show($id)
@@ -59,6 +67,7 @@ class produkcontroller extends Controller
     public function edit($id,Request $request)
     {
         $produk = produk::findOrFail($id);
+        $produk->bonus = $produk->bonus->bonus;
         return view('produk/edit',compact('produk'));
     }
     public function update($id,Request $request)
@@ -68,11 +77,12 @@ class produkcontroller extends Controller
         $input = $request->all();
         $validator = Validator::make($input,
             [
-                'nama_produk'=>'required|string|min:4|unique:produk,nama_produk,'.$request->input('id'),
-                'harga_produk' => 'required|integer|',
-                'deskripsi_produk' => 'required|string|min:10',
-                'jenis_produk' => 'required|in:Hewani,Nabati',
-                'berlaku_sampai'=>'required|date',
+                'nama_produk'       =>  'required|string|min:4|unique:produk,nama_produk,'.$request->input('id'),
+                'harga_produk'      =>  'required|integer|',
+                'deskripsi_produk'  =>  'required|string|min:10',
+                'jenis_produk'      =>  'required|in:Hewani,Nabati',
+                'berlaku_sampai'    =>  'required|date',
+                'bonus'             =>  'sometimes|string|',
 
             ]);
         if ($validator->fails())
@@ -82,7 +92,11 @@ class produkcontroller extends Controller
 
 
         $produk->update($request->all());
+        $bonus = $produk->bonus;
+        $bonus->bonus = $request->input('bonus');
+        $produk->bonus()->save($bonus);
         return redirect('produk');
+
     }
 
     public function destroy($id)

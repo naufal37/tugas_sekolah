@@ -19,6 +19,10 @@ class produk extends Model
         ];
     public $dates = ['berlaku_sampai'];
 
+    public function bonus(){
+        return $this->hasOne('App\bonus','id_bonus');
+    }
+
 //    public function setNamaProdukAttribute($nama_produk)
 //    {
 //        $print = $this->attributes['nama_produk'] = strtolower($nama_produk);

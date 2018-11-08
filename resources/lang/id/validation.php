@@ -136,6 +136,8 @@ return [
             'required' => 'Harga Produk Harus Di Isi',
             'integer' => 'Harga Produk Harus Berupa Angka',
             'min' => 'Harga Produk Minimal Memiliki 3 Karakter',
+            'digits_between' => 'Harga Produk Minimal 1000',
+
         ],
 
         'deskripsi_produk' => [
@@ -147,6 +149,11 @@ return [
         'jenis_produk' => [
             'required' => 'Jenis Produk Harus Di Pilih',
             'in' => 'Jenis Produk Harus Berupa Hewani Atau Nabati',
+        ],
+
+        'bonus' => [
+            'min' => 'Deskripsi Produk Minimal Memiliki 4 Karakter',
+            'string' => 'Deskripsi Produk Harus Berupa Huruf',
         ],
     ],
 

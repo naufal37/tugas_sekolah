@@ -6,7 +6,7 @@
 
     <div class="form-group">
             {!! Form::label('nama_produk','Nama Produk',['class'=>'custom-control-label']) !!}
-        @if ($errors->any())
+        @if ($errors->has('nama_produk'))
             {!! Form::text('nama_produk',null,['class'=>'form-control is-invalid']) !!}
         @else
             {!! Form::text('nama_produk',null,['class'=>'form-control']) !!}
@@ -61,6 +61,8 @@
         </div>
 
         <div class="form-group">
+            {!! Form::label('berlaku_sampai','Berlaku Sampai',['class'=>'custom-control-label']) !!}
+
             @if ($errors->has('berlaku_sampai'))
                 {!! Form::date('berlaku_sampai', !empty($produk) ? $produk->berlaku_sampai->format('Y-m-d'): null, ['class' => 'form-control is-invalid', 'id' => 'berlaku_sampai']) !!}
             @else
@@ -70,6 +72,20 @@
                 <span class="help-block">{{$errors->first('berlaku_sampai')}}</span>
             @endif
         </div>
+
+        <div class="form-group">
+            {!! Form::label('bonus','Bonus',['class'=>'custom-control-label']) !!}
+            @if ($errors->has('bonus'))
+                {!! Form::text('bonus',null,['class'=>'form-control is-invalid']) !!}
+            @else
+                {!! Form::text('bonus',null,['class'=>'form-control']) !!}
+            @endif
+
+            @if ($errors->has('bonus'))
+                <span class="help-block">{{$errors->first('bonus')}}</span>
+            @endif
+        </div>
+
 
         <div class="form-group">
             {!! Form::submit($submitButtonText,['class'=>'btn btn-primary form-control']) !!}
